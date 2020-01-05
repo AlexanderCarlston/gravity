@@ -112,7 +112,8 @@ var mouse = {
   x: innerWidth / 2,
   y: innerHeight / 2
 };
-var colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66']; // Event Listeners
+var colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66'];
+var gravity = 1; // Event Listeners
 
 addEventListener('mousemove', function (event) {
   mouse.x = event.clientX;
@@ -124,19 +125,20 @@ addEventListener('resize', function () {
   init();
 }); // Objects
 
-var _Object =
+var Ball =
 /*#__PURE__*/
 function () {
-  function Object(x, y, radius, color) {
-    _classCallCheck(this, Object);
+  function Ball(x, y, radius, color, dy) {
+    _classCallCheck(this, Ball);
 
     this.x = x;
     this.y = y;
+    this.dy = dy;
     this.radius = radius;
     this.color = color;
   }
 
-  _createClass(Object, [{
+  _createClass(Ball, [{
     key: "draw",
     value: function draw() {
       c.beginPath();
@@ -148,32 +150,37 @@ function () {
   }, {
     key: "update",
     value: function update() {
+      if (this.y + this.radius > canvas.height) {
+        this.dy = -this.dy * 0.9;
+      } else {
+        this.dy += gravity;
+      }
+
+      this.y += this.dy;
       this.draw();
     }
   }]);
 
-  return Object;
+  return Ball;
 }(); // Implementation
 
 
-var objects;
+var ball;
 
 function init() {
-  objects = [];
+  ball = new Ball(canvas.width / 2, canvas.height / 2, 30, 'red', 2);
 
-  for (var i = 0; i < 400; i++) {// objects.push()
-  }
+  for (var i = 0; i < 400; i++) {}
 } // Animation Loop
 
 
 function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
-  c.fillText('HTML CANVAS BOILERPLATE', mouse.x, mouse.y); // objects.forEach(object => {
-  //  object.update()
-  // })
+  ball.update();
 }
 
+;
 init();
 animate();
 
