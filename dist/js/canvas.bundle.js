@@ -123,7 +123,6 @@ addEventListener('mousemove', function (event) {
 addEventListener('resize', function () {
   canvas.width = innerWidth;
   canvas.height = innerHeight;
-  init();
 });
 addEventListener('click', function (event) {
   init();
