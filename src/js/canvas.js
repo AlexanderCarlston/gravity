@@ -15,6 +15,7 @@ const colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66']
 
 let gravity = 1;
 let friction = 0.9;
+
 // Event Listeners
 addEventListener('mousemove', (event) => {
   mouse.x = event.clientX
@@ -68,9 +69,11 @@ class Ball {
 
 // Implementation
 let ballAray = [];
+
 function init() {
   ballAray = [];
-  for (let i = 0; i < 400; i++) {
+
+  for (let i = 0; i < 150; i++) {
     let radius = randomIntFromRange(8, 20);
     let x = randomIntFromRange(radius, canvas.width - radius);
     let y = randomIntFromRange(0, canvas.height - radius);

@@ -182,7 +182,7 @@ var ballAray = [];
 function init() {
   ballAray = [];
 
-  for (var i = 0; i < 400; i++) {
+  for (var i = 0; i < 150; i++) {
     var radius = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["randomIntFromRange"])(8, 20);
     var x = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["randomIntFromRange"])(radius, canvas.width - radius);
     var y = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["randomIntFromRange"])(0, canvas.height - radius);
