@@ -3,24 +3,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  entry: './src/js/canvas.js',
+  entry: './src/ts/canvas.ts',
   output: {
+    filename: 'bundle.js',
     path: __dirname + '/dist/',
-    filename: './js/canvas.bundle.js'
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
     new BrowserSyncPlugin({
@@ -37,5 +35,5 @@ module.exports = {
     })
   ],
   watch: true,
-  devtool: 'source-map'
+  devtool: 'inline-source-map'
 }
